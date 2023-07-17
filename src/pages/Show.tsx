@@ -194,7 +194,7 @@ export default function Show() {
         </div>
 
         <Link to={"/portfolio"}>
-          <h1 className="bg-black text-white w-1/2 mx-auto px-6 py-4 rounded-lg mt-5 text-center">
+          <h1 className="bg-black text-white w-full mx-auto px-6 py-4 rounded-lg mt-5 text-center">
             Add to Portfolio
           </h1>
         </Link>

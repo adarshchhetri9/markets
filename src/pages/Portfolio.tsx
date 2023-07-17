@@ -77,7 +77,7 @@ export default function Portfolio(): JSX.Element {
       )}
       <div className="pb-20">
         <Link to={"/"}>
-          <h1 className="bg-black text-white w-1/2 mx-auto px-6 py-4 rounded-lg mt-16 text-center">
+          <h1 className="bg-black text-white w-full mx-5 px-6 py-4 rounded-lg mt-16 text-center">
             Check Your Wallets
           </h1>
         </Link>

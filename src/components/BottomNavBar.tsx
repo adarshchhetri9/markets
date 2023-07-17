@@ -20,7 +20,7 @@ const BottomNavBar: React.FC = () => {
       <nav className="fixed bottom-0 left-0 w-[390px] border bg-white flex justify-between items-center h-16 rounded-b-lg center-x">
         <Link
           to={"/portfolio"}
-          className={`text-gray-600  w-1/3 text-center ${
+          className={`  w-1/3 text-center ${
             activeTab === "Portfolio" ? "font-semibold text-blue-700" : ""
           }`}
           onClick={() => handleTabClick("Portfolio")}
@@ -48,7 +48,7 @@ const BottomNavBar: React.FC = () => {
 
         <Link
           to={"/"}
-          className={`text-gray-600  w-1/3 text-center ${
+          className={` w-1/3 text-center ${
             activeTab === "Market" ? "font-semibold text-blue-700" : ""
           }`}
           onClick={() => handleTabClick("Market")}
@@ -74,7 +74,7 @@ const BottomNavBar: React.FC = () => {
 
         <Link
           to={"/bitcoin"}
-          className={`text-gray-600  w-1/3 text-center ${
+          className={`  w-1/3 text-center ${
             activeTab === "News" ? "font-semibold text-blue-700" : ""
           }`}
           onClick={() => handleTabClick("News")}
