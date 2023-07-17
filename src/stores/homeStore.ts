@@ -1,5 +1,6 @@
 import axios from "axios";
-import create from "zustand";
+import { create } from "zustand";
+import debounce from "../helper/debounce";
 
 export interface Coin {
   name: string;
@@ -10,28 +11,53 @@ export interface Coin {
 
 interface HomeStoreState {
   coins: Coin[];
-  query: string; // Add query property to the HomeStoreState
+  trending: Coin[]; // Initialize the 'trending' property with an empty array
+  query: string;
   fetchCoins: () => Promise<void>;
-  setQuery: (e: React.ChangeEvent<HTMLInputElement>) => void; // Specify the type for e
-  searchCoins: () => void; // Correct the typo in the function name
+  setQuery: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  searchCoins: () => void;
 }
 
-const homeStore = create<HomeStoreState>((set) => ({
+const useHomeStore = create<HomeStoreState>((set) => ({
   coins: [],
+  trending: [], // Initialize 'trending' as an empty array
   query: "",
 
-  setQuery: (e) => {
-    set({ query: e.target.value }); // Correct the syntax for updating the state
-    homeStore.getState().searchCoins();
+  setQuery: (e: React.ChangeEvent<HTMLInputElement>) => {
+    set((state) => ({ ...state, query: e.target.value }));
+    useHomeStore.getState().searchCoins();
   },
 
-  searchCoins: async () => {
-    const { query } = homeStore.getState();
-    const res = await axios.get(
-      `https://api.coingecko.com/api/v3/search?query=${query}`
-    );
-    console.log(res);
-  },
+  searchCoins: debounce(
+    () => {
+      const { query, trending } = useHomeStore.getState();
+      if (query.length > 2) {
+        axios
+          .get(`https://api.coingecko.com/api/v3/search?query=${query}`)
+          .then((res) => {
+            const coins: Coin[] = res.data.coins.map((coin: any) => {
+              return {
+                name: coin.name,
+                image: coin.large,
+                id: coin.id,
+              };
+            });
+
+            set({ coins });
+
+            console.log(coins);
+          })
+          .catch((error) => {
+            console.error("Error fetching coins:", error);
+          });
+      } else {
+        // Set 'coins' to 'trending' if the query length is less than or equal to 2
+        set({ coins: trending });
+      }
+    },
+    500,
+    true
+  ),
 
   fetchCoins: async () => {
     try {
@@ -48,7 +74,7 @@ const homeStore = create<HomeStoreState>((set) => ({
         };
       });
 
-      set({ coins });
+      set({ coins, trending: coins });
       console.log(coins);
     } catch (error) {
       console.error("Error fetching coins:", error);
@@ -56,4 +82,4 @@ const homeStore = create<HomeStoreState>((set) => ({
   },
 }));
 
-export default homeStore;
+export default useHomeStore;

@@ -1,16 +1,18 @@
-import React from "react";
+import { useEffect, ChangeEvent } from "react";
 import homeStore, { Coin } from "../stores/homeStore";
 import { Link } from "react-router-dom";
 
 interface HomeStore {
   fetchCoins: () => Promise<void>;
   coins: Coin[];
+  query: string;
+  setQuery: (e: ChangeEvent<HTMLInputElement>) => void; // Add type for the event parameter
 }
 
 export default function Home() {
   const store: HomeStore = homeStore() as HomeStore;
 
-  React.useEffect(() => {
+  useEffect(() => {
     store.fetchCoins();
   }, []);
 
