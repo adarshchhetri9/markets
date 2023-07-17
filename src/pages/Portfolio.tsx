@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import { bitcoin } from "../assets";
+import { bitcoin } from "../assets";
 import { Link } from "react-router-dom";
 
 interface UserDetails {
@@ -83,7 +83,7 @@ export default function Portfolio(): JSX.Element {
         </Link>
 
         <Link to="/bitcoin">
-          {/* <img src={bitcoin} className="w-36 h-36 mx-auto mt-16" alt="" /> */}
+          <img src={bitcoin} className="w-36 h-36 mx-auto mt-16" alt="" />
         </Link>
       </div>
     </div>

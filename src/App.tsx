@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Show from "./pages/Show";
 // import "./index.css";
-// import BottomNavBar from "./components/BottomNavBar";
+import BottomNavBar from "./components/BottomNavBar";
 import Portfolio from "./pages/Portfolio";
 
 const App = () => (
@@ -15,7 +15,7 @@ const App = () => (
         <Route path="/" element={<Home />} />
         <Route path="/:id" element={<Show />} />
       </Routes>
-      {/* <BottomNavBar /> */}
+      <BottomNavBar />
     </BrowserRouter>
   </div>
 );

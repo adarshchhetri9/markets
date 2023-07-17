@@ -11,8 +11,8 @@ import {
   // Legend,
   ResponsiveContainer,
 } from "recharts";
-// import Head from "../components/Head";
-// import { bitcoin, money } from "../assets";
+import Head from "../components/Head";
+import { bitcoin, money } from "../assets";
 
 export default function Home() {
   const store = homeStore();
@@ -24,14 +24,31 @@ export default function Home() {
   return (
     <div className="w-[390px]   p-2 pb-[60px] ">
       <div className="bg-[#2c53f5] text-white  rounded-t-xl px-4 py-2">
-        {/* <Head /> */}
+        <Head />
         <div className=" rounded-lg w-full p-1 text-black bg-[#5c7cf7]">
-          <input
-            className="w-full bg-[#5c7cf7] focus:border  focus:outline-none focus:border-[#6d8af1] text-white"
-            type="text"
-            value={store.query}
-            onChange={store.setQuery}
-          />
+          <div className="relative">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6 absolute text-white"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
+
+            <input
+              className="w-full pl-8 bg-[#5c7cf7] focus:border  focus:outline-none border border-none text-white"
+              type="text"
+              value={store.query}
+              onChange={store.setQuery}
+            />
+          </div>
         </div>
         <div className="flex gap-4 justify-center mt-5 mb-4 ">
           <h1 className="text-slate-300">Main Market</h1>
@@ -72,13 +89,13 @@ export default function Home() {
               {coin.priceBtc && (
                 <div>
                   <div className="flex justify-start gap-1 items-center">
-                    {/* <img src={bitcoin} className="w-[20px] h-[20px]" alt="" /> */}
+                    <img src={bitcoin} className="w-[20px] h-[20px]" alt="" />
                     <h1 className="relative overflow-hidden text-xs font-semibold  ">
                       {coin.priceBtc}
                     </h1>
                   </div>
                   <div className="ml-[2.5px] flex justify-start gap-2 items-center mt-2 ">
-                    {/* <img src={money} className="w-[15px] h-{15px]" alt="" /> */}
+                    <img src={money} className="w-[15px] h-{15px]" alt="" />
                     <h1 className="relative  overflow-hidden text-[10px] text-slate-800  ">
                       {coin.priceUsd}
                     </h1>

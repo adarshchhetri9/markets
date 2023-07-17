@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from "recharts";
-// import { arrow } from "../assets";
+import { arrow } from "../assets";
 
 interface ShowStore {
   fetchData: (id: string, duration: number) => Promise<void>;
@@ -68,7 +68,7 @@ export default function Show() {
         <div className="flex mt-3 items-center">
           <Link className="mr-5 mb-4" to="/">
             <img
-              // src={arrow}
+              src={arrow}
               alt=""
               className="border rounded-full w-10 h-10 flex justify-center p-2 items-center pl-1"
             />
@@ -103,24 +103,70 @@ export default function Show() {
           <Line type="monotone" dataKey="Price" stroke="#000" dot={false} />
         </LineChart>
       </ResponsiveContainer>
-      <div className="flex justify-center gap-3 font-semibold mb-10">
-        {[1, 7, 30, 90, 365].map((duration, index) => (
-          <button
-            key={duration}
-            ref={(ref) => (durationButtonsRef.current[index] = ref)}
-            onClick={() => handleDurationChange(duration, index)}
-            className={`${
-              selectedDuration === duration
-                ? "bg-black text-white"
-                : "bg-gray-200 text-gray-700"
-            } w-12 h-12 rounded-full`}
-          >
-            {duration === 1 ? "1D" : `${duration}D`}
-          </button>
-        ))}
+      <div className="flex justify-center gap-7 font-semibold mb-10 text-xs">
+        <button
+          key={1}
+          ref={(ref) => (durationButtonsRef.current[0] = ref)}
+          onClick={() => handleDurationChange(1, 0)}
+          className={`${
+            selectedDuration === 1
+              ? "bg-black text-white"
+              : "bg-gray-200 text-gray-700"
+          } w-10 h-10 rounded-full`}
+        >
+          1D
+        </button>
+        <button
+          key={7}
+          ref={(ref) => (durationButtonsRef.current[1] = ref)}
+          onClick={() => handleDurationChange(7, 1)}
+          className={`${
+            selectedDuration === 7
+              ? "bg-black text-white"
+              : "bg-gray-200 text-gray-700"
+          } w-10 h-10 rounded-full`}
+        >
+          7D
+        </button>
+        <button
+          key={30}
+          ref={(ref) => (durationButtonsRef.current[2] = ref)}
+          onClick={() => handleDurationChange(30, 2)}
+          className={`${
+            selectedDuration === 30
+              ? "bg-black text-white"
+              : "bg-gray-200 text-gray-700"
+          } w-10 h-10 rounded-full`}
+        >
+          1M
+        </button>
+        <button
+          key={90}
+          ref={(ref) => (durationButtonsRef.current[3] = ref)}
+          onClick={() => handleDurationChange(90, 3)}
+          className={`${
+            selectedDuration === 90
+              ? "bg-black text-white"
+              : "bg-gray-200 text-gray-700"
+          } w-10 h-10 rounded-full`}
+        >
+          3M
+        </button>
+        <button
+          key={365}
+          ref={(ref) => (durationButtonsRef.current[4] = ref)}
+          onClick={() => handleDurationChange(365, 4)}
+          className={`${
+            selectedDuration === 365
+              ? "bg-black text-white"
+              : "bg-gray-200 text-gray-700"
+          } w-10 h-10 rounded-full`}
+        >
+          1Y
+        </button>
       </div>
       <div className="mx-4">
-        <div className="font-medium flex flex-col gap-1">
+        <div className="font-base flex flex-col gap-1">
           <div className="flex justify-between">
             <h1>Close Prize :</h1>
             <span className="font-bold">
