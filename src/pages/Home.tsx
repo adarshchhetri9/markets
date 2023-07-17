@@ -43,7 +43,8 @@ export default function Home() {
             </svg>
 
             <input
-              className="w-full pl-8 bg-[#5c7cf7] focus:border  focus:outline-none border border-none text-white"
+              className="w-full pl-8 bg-[#5c7cf7] focus:border placeholder:opacity-50 focus:outline-none border border-none text-white placeholder:text-white "
+              placeholder="Search markets"
               type="text"
               value={store.query}
               onChange={store.setQuery}
