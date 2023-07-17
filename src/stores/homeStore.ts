@@ -21,6 +21,7 @@ interface HomeStoreState {
   setQuery: (e: React.ChangeEvent<HTMLInputElement>) => void;
   searchCoins: () => void;
   graphData: Record<string, { Date: string; Price: number }[]>;
+  searching: boolean;
 }
 
 const homeStore = create<HomeStoreState>((set) => {
@@ -32,6 +33,7 @@ const homeStore = create<HomeStoreState>((set) => {
     fetchCoins: () => Promise.resolve(),
     setQuery: () => {},
     searchCoins: () => {},
+    searching: false,
   };
 
   let btcPrice: number; // Define btcPrice here
@@ -46,6 +48,7 @@ const homeStore = create<HomeStoreState>((set) => {
 
     searchCoins: debounce(
       async () => {
+        set({ searching: true });
         const { query, trending } = homeStore.getState();
 
         if (query.length > 2) {
@@ -65,12 +68,12 @@ const homeStore = create<HomeStoreState>((set) => {
               };
             });
 
-            set({ coins });
+            set({ coins, searching: false });
           } catch (error) {
             console.error("Error fetching coins:", error);
           }
         } else {
-          set({ coins: trending });
+          set({ coins: trending, searching: false });
         }
       },
       500,
