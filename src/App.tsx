@@ -5,13 +5,13 @@ import Home from "./pages/Home";
 import Show from "./pages/Show";
 // import "./index.css";
 // import BottomNavBar from "./components/BottomNavBar";
-// import Portfolio from "./pages/Portfolio";
+import Portfolio from "./pages/Portfolio";
 
 const App = () => (
   <div className="w-[390px] ">
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/portfolio" element={<Portfolio />} /> */}
+        <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/" element={<Home />} />
         <Route path="/:id" element={<Show />} />
       </Routes>
