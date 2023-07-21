@@ -36,8 +36,8 @@ const showStore = create<ShowStoreState>((set) => ({
     });
 
     set({ graphData, data: dataRes.data });
-    console.log(graphData);
-    console.log(dataRes);
+    // console.log(graphData);
+    // console.log(dataRes);
   },
 }));
 

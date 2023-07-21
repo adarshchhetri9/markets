@@ -33,7 +33,7 @@ export default function Portfolio(): JSX.Element {
       const { data } = await axios.get("https://randomuser.me/api/");
       const userDetails: UserDetails = data.results[0];
       setDetails(userDetails);
-      console.log(userDetails);
+      // console.log(userDetails);
     } catch (error) {
       console.error("Error fetching data:", error);
     }

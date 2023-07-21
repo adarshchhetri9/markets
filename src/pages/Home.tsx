@@ -9,7 +9,7 @@ import {
   // CartesianGrid,
   // Tooltip,
   // Legend,
-  ResponsiveContainer,
+  // ResponsiveContainer,
 } from "recharts";
 import Head from "../components/Head";
 import { bitcoin, money } from "../assets";
@@ -86,8 +86,8 @@ export default function Home() {
               </div>
               {coin.priceBtc && (
                 <div className=" ">
-                  <ResponsiveContainer width={120} height={40}>
-                    <LineChart
+                  {/* <ResponsiveContainer > */}
+                    <LineChart width={120} height={40}
                       data={store.graphData[coin.id]}
                       margin={{ top: 5, right: 30, left: 10, bottom: 5 }}
                     >
@@ -98,7 +98,7 @@ export default function Home() {
                         dot={false}
                       />
                     </LineChart>
-                  </ResponsiveContainer>
+                  {/* </ResponsiveContainer> */}
                 </div>
               )}
               {coin.priceBtc && (
